@@ -2,10 +2,10 @@
 
 A full-stack web application for managing employee referrals with role-based access, Cloudinary PDF uploads, and secure authentication.
 
-🚀 Live Deployed Backend
+🚀 Live Deployed Link
 
 Base URL:
-👉 https://candidate-referral-managementsystem.onrender.com
+👉 https://candidate-referral-management.netlify.app/
 
 Admin Credentials for Testing:
 
@@ -87,8 +87,8 @@ Responsive UI
 
 ⚙️ Backend Setup Instructions
 1️⃣ Clone Repository
-git clone https://github.com/your-username/your-repo.git
-cd your-repo/backend
+git [clone https://github.com/your-username/your-repo.git](https://github.com/Mahesh7s/candidate_Referral_ManagementSystem.git)
+cd reponame/backend
 
 2️⃣ Install Packages
 npm install
@@ -107,7 +107,7 @@ JWT_PRIVATE_KEY=your_secret_key
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
-UPLOAD_PRESET=unsigned_pdfs   # (must match Cloudinary unsigned preset)
+
 
 
 ⚠️ Do NOT commit .env to GitHub.
@@ -126,7 +126,7 @@ npm start
 
 API Base:
 
-http://localhost:5000/api
+http://localhost:5000/api --->for the local testing
 
 🎨 Frontend Setup Instructions
 1️⃣ Navigate to Frontend
@@ -141,14 +141,14 @@ Inside /frontend/.env:
 
 REACT_APP_API_BASE_URL=http://localhost:5000/api
 # OR for production:
-REACT_APP_API_BASE_URL=https://candidate-referral-managementsystem.onrender.com/api
+REACT_APP_API_BASE_URL=your backend deployed url
 
 4️⃣ Run Frontend
 npm start
 
 
 It should automatically open:
-👉 http://localhost:3000/
+👉 http://localhost:5000/
 
 📚 API Documentation
 🔐 Auth Routes
