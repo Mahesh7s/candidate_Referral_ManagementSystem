@@ -21,7 +21,7 @@ router.post(
   auth(["User", "Admin"]),
   upload.single("resume"),
   handleUploadErrors,
-  validateReferralData,
+   validateReferralData,
   createReferral
 );
 
