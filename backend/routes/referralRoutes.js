@@ -8,7 +8,7 @@ const {
   deleteReferral,
   getResume
 } = require("../controllers/referralController");
-
+const { body } = require("express-validator");
 const auth = require("../middlewares/authMiddleware");
 const { upload, handleUploadErrors } = require("../middlewares/resumeUpload");
 const { validateReferralData } = require("../middlewares/validationMiddleware");
