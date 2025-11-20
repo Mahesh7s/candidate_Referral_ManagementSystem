@@ -39,7 +39,7 @@ const RegisterPage = () => {
       const result = await dispatch(registerUser(formData)).unwrap();
       
       if (result) {
-        toast.success("🎉 Registration successful! Please login.");
+   
         setFormData({ name: "", email: "", password: "" });
         navigate("/login");
       }
