@@ -1,102 +1,79 @@
-🌟 Candidate Referral Management System
+# 🌟 Candidate Referral Management System
 
-A full-stack web application for managing employee referrals with role-based access, Cloudinary PDF uploads, and secure authentication.
+A full-stack web application for managing employee referrals with **role-based access**, **Cloudinary PDF uploads**, and **secure authentication**.
 
-🚀 Live Deployed Link
+## 🚀 Live Deployment Links
 
-Base URL:
+### **Frontend (Live App):**  
 👉 https://candidate-referral-management.netlify.app/
 
-Admin Credentials for Testing:
+### **Backend (API Server):**  
+👉 https://candidate-referral-managementsystem.onrender.com
 
-Email: admin@gmail.com
+## 🔐 Admin Credentials (for Testing)
 
+Email: admin@gmail.com  
 Password: admin@123
 
-⚠️ Use these credentials to test Admin-only features such as viewing all referrals, updating status, etc.
+## 📂 Project Structure
 
-📂 Project Structure
-/backend
-/frontend
+/backend  
+/frontend  
 README.md
 
-✨ Features Implemented
-👤 User Authentication
+## ✨ Features Implemented
 
-Register and Login with JWT
+### 👤 User Authentication
+- JWT-based Authentication
+- Login & Register
+- Role-based Access (Admin / User)
+- Protected Routes
 
-Role-based access: Admin, User
+### 📝 Referral Management
+- Create a referral
+- Upload candidate resume (PDF only)
+- Update your referral
+- Delete your referral
+- Open PDF in a new tab
+- Cloudinary Integration
 
-Secure protected routes
+### 👑 Admin Features
+- View ALL referrals
+- Update referral Status
+- Access any resume
 
-📝 Referral Management
+### ☁️ Cloud Features
+- Cloudinary Unsigned PDF Uploads
+- Auto-generated public resume URL
+- Direct PDF access without token
 
-Create a referral
+### 🔐 Validations
+- Email validation
+- Phone number (10-digit) validation
+- Form validations using express-validator
 
-Upload candidate resume (PDF only)
+### 🖥 Frontend Features
+- Responsive UI
+- User Dashboard
+- Admin Dashboard
+- Resume Preview
+- Status update controls
 
-Cloudinary integration
+# ⚙️ Backend Setup Instructions
 
-Update your referral
+## 1️⃣ Clone Repository
+```bash
+git clone https://github.com/Mahesh7s/candidate_Referral_ManagementSystem.git
+cd candidate_Referral_ManagementSystem/backend
+```
 
-Admin can update referral status
-
-Open resume in new tab (PDF viewer)
-
-Delete referral
-
-🗂 Admin Features
-
-View all referrals
-
-Update candidate status
-
-Access every resume
-
-☁️ Cloud Features
-
-Cloudinary unsigned PDF uploads
-
-Auto-generated public URL
-
-Resume available without authentication
-
-🔐 Validations
-
-Proper email validation
-
-Realistic 10-digit phone number validation
-
-Form validation using express-validator
-
-Reject invalid names, emails, phone numbers
-
-🖥 Frontend Features
-
-User login UI
-
-Admin dashboard
-
-Referral form
-
-Resume preview
-
-Status update buttons
-
-Responsive UI
-
-⚙️ Backend Setup Instructions
-1️⃣ Clone Repository
-git [clone https://github.com/your-username/your-repo.git](https://github.com/Mahesh7s/candidate_Referral_ManagementSystem.git)
-cd reponame/backend
-
-2️⃣ Install Packages
+## 2️⃣ Install Dependencies
+```bash
 npm install
+```
 
-3️⃣ Create .env File (Backend)
-
-Create /backend/.env with these keys:
-
+## 3️⃣ Create .env File (Backend)
+```
 PORT=5000
 MONGO_URI=your_mongo_db_url
 
@@ -107,160 +84,152 @@ JWT_PRIVATE_KEY=your_secret_key
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
+```
 
-
-
-⚠️ Do NOT commit .env to GitHub.
-
-4️⃣ Start Backend
-
-Development:
-
+## 4️⃣ Start Backend
+```bash
 npm run dev
+```
 
+# 🎨 Frontend Setup Instructions
 
-Production:
+## 1️⃣ Navigate to Frontend
+```bash
+cd ../frontend
+```
 
-npm start
-
-
-API Base:
-
-http://localhost:5000/api --->for the local testing
-
-🎨 Frontend Setup Instructions
-1️⃣ Navigate to Frontend
-cd frontend
-
-2️⃣ Install Dependencies
+## 2️⃣ Install Dependencies
+```bash
 npm install
+```
 
-3️⃣ Create .env File (Frontend)
-
-Inside /frontend/.env:
-
+## 3️⃣ Create .env File (Frontend)
+```
 REACT_APP_API_BASE_URL=http://localhost:5000/api
-# OR for production:
-REACT_APP_API_BASE_URL=your backend deployed url
+# OR Production:
+REACT_APP_API_BASE_URL=https://candidate-referral-managementsystem.onrender.com/api
+```
 
-4️⃣ Run Frontend
+## 4️⃣ Start Frontend
+```bash
 npm start
+```
 
+# 📚 API Documentation
 
-It should automatically open:
-👉 http://localhost:5000/
+## 🔐 Auth Routes
 
-📚 API Documentation
-🔐 Auth Routes
-POST /api/auth/register
-
-Register a new user.
-Body
-
+### POST /api/auth/register
+```json
 {
   "name": "John",
   "email": "john@gmail.com",
   "password": "john123"
 }
+```
 
-POST /api/auth/login
-
-Login user & receive JWT token.
-Body
-
+### POST /api/auth/login
+```json
 {
   "email": "john@gmail.com",
   "password": "john123"
 }
+```
 
-
-Response
-
-{
-  "success": true,
-  "token": "jwt_token_here"
-}
-
-📝 Referral Routes
-
-⚠️ All referral routes require Authorization header:
-
+# 📝 Referral Routes (Require Token)
 Authorization: Bearer <token>
 
-✅ POST /api/referral/
+📝 Referral Management Routes
+🔒 All referral routes require JWT token in Authorization header:
 
-Create referral (with resume PDF).
-Form-Data:
+text
+Authorization: Bearer <your_jwt_token>
+  # POST /api/referral/
+Create a new candidate referral with resume.
+
+Form Data:
 
 candidateName: John Doe
-email: john@gmail.com
+
+email: candidate@example.com
+
 phone: 9876543210
+
 jobTitle: Software Engineer
-resume: <PDF file>
 
-📄 GET /api/referral/my
+resume: [PDF File]
 
-Get referrals created by logged-in user.
+# GET /api/referral/my
+Get all referrals created by the logged-in user.
 
-👑 GET /api/referral/
+# GET /api/referral/
+👑 Admin Only - Get all referrals from all users.
 
-(Admin Only) Get ALL referrals.
+# PUT /api/referral/:id
+Update referral details (without changing resume).
 
-✏️ PUT /api/referral/:id
+# PUT /api/referral/:id/with-resume
+Update referral details and upload new resume.
 
-Update referral (without changing resume).
+Form Data includes:
 
-📎 PUT /api/referral/:id/with-resume
+resume: [New PDF File]
 
-Update referral + upload new resume.
+# PUT /api/referral/:id/status
+👑 Admin Only - Update candidate application status.
 
-Form-Data includes:
+Request Body:
 
-resume: <PDF file>
-
-🏷 PUT /api/referral/:id/status
-
-(Admin only) Update candidate status.
-Body:
-
+json
 {
   "status": "Selected"
 }
+Available Status Values:
 
-❌ DELETE /api/referral/:id
+Pending
 
-Delete your own referral.
+Reviewed
 
-📜 GET /api/referral/:id/resume
+Selected
 
+Rejected
+
+# DELETE /api/referral/:id
+Delete a referral (users can only delete their own).
+
+# GET /api/referral/:id/resume
 Open candidate resume PDF in browser.
-👍 Works directly because the file is served from Cloudinary.
 
-📦 Tech Stack
+## 📦 Technology Stack
 Frontend
+⚛️ React - User Interface Library
 
-React
+🎨 Vite - Build Tool & Development Server
 
-Axios
+🔄 Redux Toolkit - State Management
 
-Redux Toolkit
+🌐 Axios - HTTP Client
 
-React Router
+🧭 React Router - Navigation
+
+💫 React Toastify - Notifications
 
 Backend
+🟢 Node.js - Runtime Environment
 
-Node.js
+🚀 Express.js - Web Application Framework
 
-Express.js
+📁 Multer - File Upload Handling
 
-Multer
+☁️ Cloudinary - Cloud File Storage
 
-Cloudinary
+🔐 JWT - JSON Web Tokens
 
-JWT Authentication
+✅ Express-Validator - Input Validation
 
-Express-Validator
+🌍 CORS - Cross-Origin Resource Sharing
 
 Database
+🍃 MongoDB - NoSQL Database
 
-MongoDB + Mongoose
+⚡ Mongoose - Object Data Modeling
