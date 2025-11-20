@@ -1,5 +1,4 @@
 const express = require("express");
-const { body } = require("express-validator");
 const {
   createReferral,
   getMyReferrals,
@@ -12,6 +11,7 @@ const {
 
 const auth = require("../middlewares/authMiddleware");
 const { upload, handleUploadErrors } = require("../middlewares/resumeUpload");
+const { validateReferralData } = require("../middlewares/validationMiddleware");
 
 const router = express.Router();
 
@@ -21,12 +21,7 @@ router.post(
   auth(["User", "Admin"]),
   upload.single("resume"),
   handleUploadErrors,
-  [
-    body("candidateName").notEmpty().withMessage("Candidate name required"),
-    body("email").isEmail().withMessage("Valid email required"),
-    body("phone").isMobilePhone().withMessage("Valid phone required"),
-    body("jobTitle").notEmpty().withMessage("Job title required")
-  ],
+  validateReferralData,
   createReferral
 );
 
@@ -37,7 +32,12 @@ router.get("/my", auth(["User", "Admin"]), getMyReferrals);
 router.get("/", auth(["Admin"]), getAllReferrals);
 
 // Update referral details
-router.put("/:id", auth(["User", "Admin"]), updateReferral);
+router.put(
+  "/:id", 
+  auth(["User", "Admin"]), 
+  validateReferralData,
+  updateReferral
+);
 
 // Update referral with resume
 router.put(
@@ -45,6 +45,7 @@ router.put(
   auth(["User", "Admin"]),
   upload.single("resume"),
   handleUploadErrors,
+  validateReferralData,
   updateReferral
 );
 

@@ -10,6 +10,19 @@ exports.createReferral = async (req, res) => {
       return res.status(400).json({ success: false, message: "Resume is required" });
     }
 
+    // Additional duplicate check
+    const existingReferral = await Referral.findOne({ 
+      email, 
+      createdBy: userId 
+    });
+    
+    if (existingReferral) {
+      return res.status(400).json({ 
+        success: false, 
+        message: "A referral with this email already exists" 
+      });
+    }
+
     const newReferral = await Referral.create({
       candidateName,
       email,
@@ -43,7 +56,7 @@ exports.getMyReferrals = async (req, res) => {
 exports.getAllReferrals = async (req, res) => {
   try {
     const referrals = await Referral.find().populate("createdBy", "name email");
-    res.json({ success: true, data: referrals });
+    res.json({ success: false, data: referrals });
 
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
